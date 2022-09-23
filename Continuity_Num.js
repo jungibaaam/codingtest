@@ -3,17 +3,16 @@ function solution(n) {
     var sum = 0;
     var startnum = 1;
     var lastnum = Math.ceil(n / 2);
-    console.log(n , lastnum)
+    
+    if(n == 1) {
+        return answer = 1;
+    }
     
     while(startnum <= lastnum) {
-        console.log("while startnum = " + startnum)
         for(let cal = startnum; sum <= n; cal ++) {
-            console.log("for cal = " + cal)
             sum = sum + cal;
-            console.log("sum is " + sum)
             if(sum == n) {
                 answer ++;
-                console.log("answer = "+ answer)
                 break;
             }
         }
