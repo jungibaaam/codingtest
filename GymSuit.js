@@ -1,21 +1,35 @@
 function solution(n, lost, reserve) {
-    var answer = 0;
     var count = 0;
+    reserve.sort(function(a, b) {
+        return a - b;
+    });
+    lost.sort(function(a, b) {
+        return a - b;
+    });
     for(i = 0; i < reserve.length; i ++) {
-        console.log(reserve[i])
         if(lost.includes(reserve[i])) {
-            console.log("lost and reserve is same")
-            continue;
-        } else if(lost.includes(reserve[i] - 1)) {
-            console.log("reserve - 1 is lost and " + reserve)
-            count ++;
+            lost.splice(lost.indexOf(reserve[i]), 1)
+            reserve.splice(i, 1);
+            i -- ;
+            continue
+        }
+    }
+    var answer = n - lost.length;
+    for(i = 0; i < reserve.length; i ++) {
+        if(lost.includes(reserve[i] - 1)) {
+            lost.splice(lost.indexOf(reserve[i] - 1), 1);
+            reserve.splice(i, 1)
+            count ++ ;
+            i -- ;
             continue;
         } else if(lost.includes(reserve[i] + 1)) {
-            console.log("reserve + 1 is lost and " + reserve)
-            count ++;
+            lost.splice(lost.indexOf(reserve[i] + 1), 1);
+            reserve.splice(i, 1)
+            count ++ ;
+            i -- ;
             continue;
         }
     }
-    answer = n - (lost.length - count);
+    answer += count;
     return answer;
 }
