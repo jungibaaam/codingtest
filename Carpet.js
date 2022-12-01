@@ -10,8 +10,8 @@ function solution(brown, yellow) {
             continue;
         }
         if((width - 2) * (height - 2) === yellow) {
-        answer[0] = width;
-        answer[1] = height;
+            answer[0] = width;
+            answer[1] = height;
         }
     }
     return answer;
